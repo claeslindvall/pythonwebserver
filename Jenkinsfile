@@ -1,5 +1,4 @@
 pipeline {
-<<<<<<< HEAD
 	agent any
 	stages {
 		stage("build") {
@@ -7,7 +6,6 @@ pipeline {
 				echo "Building the application"		
 			}
 		}
-		
 		stage("test") {
 			steps {
 				echo "Testing the application"		
@@ -19,17 +17,5 @@ pipeline {
 				echo "Deploying the application"		
 			}
 		}			
-		
 	}
-=======
-  agent any
-  stages {
-    stage('Print') {
-      steps {
-        sh 'echo "First step"'
-      }
-    }
-
-  }
->>>>>>> ec0bfa7ae13e01c436612d8ccfdf8ec360caf232
 }

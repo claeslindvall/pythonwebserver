@@ -1,14 +1,32 @@
+// pipeline {
+//     agent { dockerfile true }
+//     stages {
+//         stage('Test') {
+//             steps {
+//                 sh '/usr/bin/python3 --version'
+//                 // sh '/usr/bin/python3 -m http.server 9000'
+//             }
+//         }
+//     }
+// }
 pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
+    agent any 
+    stages { 
+        stage('Build') {
+            agent {
+                docker { 
+                    image 'registry.intraphone.tech/test01/python-server:v6'
+                    reuseNode true
+                }
+            }
             steps {
-                sh '/usr/bin/python3 --version'
-                // sh '/usr/bin/python3 -m http.server 9000'
+                sh 'echo "Jepp"' 
             }
         }
     }
 }
+
+
 // pipeline {
 //     agent any 
 //     stages { 

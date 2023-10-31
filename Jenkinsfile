@@ -6,7 +6,7 @@ pipeline {
         stage('build') {
             steps {
                 //sh '/usr/bin/python3 --version'
-                sh 'ls /usr/bin/p* '
+                sh 'ls /usr/bin/py* '
             }
         }
     }

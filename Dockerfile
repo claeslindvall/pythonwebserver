@@ -9,5 +9,6 @@ EXPOSE 9000
 RUN export PATH=$PATH:/usr/local/bin
 RUN echo $PATH
 # CMD ["/usr/local/bin/python3 /server.py"]
-CMD ["python3", "server.py"]
+# CMD ["python3", "server.py"]
+CMD ["sleep", "600"]
 

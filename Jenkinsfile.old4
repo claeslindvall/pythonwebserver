@@ -1,15 +1,13 @@
 pipeline {
-    agent any 
-    stages { 
-        stage('Build') {
-            agent {
-                docker { 
-                    image 'registry.intraphone.tech/test01/python-server:v6'
-                    reuseNode true
-                }
-            }
+    agent { 
+        docker { image 'registry.intraphone.tech/test01/python-server:v6'}
+    }
+    stages {
+        stage('build') {
             steps {
-                sh 'echo "Jepp"' 
+                //sh '/usr/bin/python3 --version'
+                // sh '/usr/bin/python3 /server.py' 
+                sh 'echo "Jepp"'
             }
         }
     }

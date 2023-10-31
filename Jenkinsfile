@@ -10,39 +10,39 @@
 //     }
 // }
 
-pipeline {
-    agent any 
-    stages { 
-        stage('Build') {
-            agent {
-                docker { 
-                    image 'registry.intraphone.tech/test01/python-server:v6'
-                    //reuseNode true
-                }
-            }
-            steps {
-                sh 'echo "Jepp"' 
-            }
-        }
-    }
-}
-
 // pipeline {
-//     agent { label 'agent01' } 
+//     agent any 
 //     stages { 
 //         stage('Build') {
-//             steps {
-//                 script {
-//                     img = docker.build("registry.intraphone.tech/test01/python-server:v6")
-//                     img.inside("--entrypoint=/usr/bin/python3 /server.py") {
-//                         sh "uname -a"
-//                     }
+//             agent {
+//                 docker { 
+//                     image 'registry.intraphone.tech/test01/python-server:v6'
+//                     //reuseNode true
 //                 }
 //             }
-        
+//             steps {
+//                 sh 'echo "Jepp"' 
+//             }
 //         }
 //     }
 // }
+
+pipeline {
+    agent { label 'agent01' } 
+    stages { 
+        stage('Build') {
+            steps {
+                script {
+                    img = docker.build("registry.intraphone.tech/test01/python-server:v6")
+                    img.inside("--entrypoint=/usr/bin/python3 /server.py") {
+                        sh "uname -a"
+                    }
+                }
+            }
+        
+        }
+    }
+}
 
 // pipeline {
 //     agent any 

@@ -1,6 +1,6 @@
 FROM ubuntu
 RUN apt update 
-RUN apt install iproute2 -y
+RUN apt install iproute2 python3 -y
 RUN apt clean
 ADD index.html index.html
 ADD server.py server.py

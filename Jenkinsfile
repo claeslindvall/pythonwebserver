@@ -1,38 +1,38 @@
-pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-                sh '/usr/bin/python3 --version'
-                // sh '/usr/bin/python3 -m http.server 9000'
-            }
-        }
-    }
-}
 // pipeline {
-//     agent any 
-//     stages { 
-//         stage('Build') {
-//             agent {
-//                 docker { 
-//                     image 'registry.intraphone.tech/test01/python-server:v6'
-//                     reuseNode true
-//                 }
-//             }
+//     agent { dockerfile true }
+//     stages {
+//         stage('Test') {
 //             steps {
-//                 sh 'echo "Jepp"' 
+//                 sh '/usr/bin/python3 --version'
+//                 // sh '/usr/bin/python3 -m http.server 9000'
 //             }
 //         }
-//         stage('Front-end') {
-//             agent {
-//                 docker { image 'node:20.9.0-alpine3.18' }
-//             }
-//             steps {
-//                 sh 'node --version'
-//             }
-//         }        
 //     }
 // }
+pipeline {
+    agent any 
+    stages { 
+        stage('Build') {
+            agent {
+                docker { 
+                    image 'registry.intraphone.tech/test01/python-server:v6'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'echo "Jepp"' 
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:20.9.0-alpine3.18' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }        
+    }
+}
 
 
 // stage('BuildInside') {

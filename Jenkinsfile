@@ -28,7 +28,7 @@
 // }
 
 pipeline {
-    agent { label 'agent01' } 
+    agent any //{ label 'agent01' } 
     stages { 
         stage('Build') {
             steps {

@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-        docker { image 'registry.intraphone.tech/test01/python-server:v3'}
+        docker { image 'registry.intraphone.tech/test01/python-server:v4'}
     }
     stages {
         stage('build') {

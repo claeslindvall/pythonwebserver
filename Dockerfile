@@ -2,5 +2,6 @@ FROM python:3
 ADD index.html index.html
 ADD server.py server.py
 EXPOSE 9000
-ENTRYPOINT ["python3", "server.py"]
+#ENTRYPOINT ["python3", "server.py"]
+CMD ["python3 server.py"]
 

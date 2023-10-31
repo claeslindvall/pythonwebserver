@@ -30,7 +30,15 @@ pipeline {
             steps {
                 sh 'node --version'
             }
-        }        
+        }
+        stage('Front-end2') {
+            agent {
+                docker { image 'node:20.9.0-alpine3.17' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }                
     }
 }
 

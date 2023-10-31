@@ -7,7 +7,7 @@ pipeline {
             steps {
                 //sh '/usr/bin/python3 --version'
                 // sh '/usr/bin/python3 /server.py' 
-                sh "echo "Jepp"
+                sh 'echo "Jepp"'
             }
         }
     }

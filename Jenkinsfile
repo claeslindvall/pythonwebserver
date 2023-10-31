@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                //sh '/usr/bin/python3 --version'
-                sh '/usr/bin/python3 -m http.server 9000'
+                sh '/usr/bin/python3 --version'
+                // sh '/usr/bin/python3 -m http.server 9000'
             }
         }
     }

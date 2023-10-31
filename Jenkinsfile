@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'python /server.py'
+                sh 'python --version'
             }
         }
     }

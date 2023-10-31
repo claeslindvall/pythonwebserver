@@ -8,12 +8,6 @@ pipeline {
                 sh '/usr/bin/python3 --version'
             }
         }
-        stage('test') {
-            steps {
-                sh 'echo "Testing again"'
-                sh '/usr/bin/python3 --version'
-            }
-        }        
     }
 }
 

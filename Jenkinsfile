@@ -5,13 +5,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'python3 --version'
+                sh '/usr/bin/python3 --version'
             }
         }
         stage('test') {
             steps {
                 sh 'echo "Testing again"'
-                sh 'python3 --version'
+                sh '/usr/bin/python3 --version'
             }
         }        
     }

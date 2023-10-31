@@ -1,2 +1,2 @@
 
-podman push registry.intraphone.tech/test01/python-server:v5
+podman push registry.intraphone.tech/test01/python-server:v6

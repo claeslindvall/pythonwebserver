@@ -1,1 +1,1 @@
-buildah build -t registry.intraphone.tech/test01/python-server:v1 . 
+buildah build -t registry.intraphone.tech/test01/python-server:v6 . 

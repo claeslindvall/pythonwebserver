@@ -34,9 +34,9 @@ pipeline {
             steps {
                 script {
                     img = docker.build("registry.intraphone.tech/test01/python-server:v6")
-                    img.inside("--entrypoint=/usr/bin/python3 /server.py") {
-                        sh "uname -a"
-                    }
+                    // img.inside("--entrypoint=/usr/bin/python3 /server.py") {
+                    //     sh "uname -a"
+                    // }
                 }
             }
         

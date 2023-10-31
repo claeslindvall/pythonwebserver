@@ -1,4 +1,5 @@
 pipeline {
+    node { label 'agent01' }
     agent { dockerfile true }
     stages {
         stage('Test') {

@@ -9,23 +9,40 @@
 //         }
 //     }
 // }
+
+// pipeline {
+//     agent any 
+//     stages { 
+//         stage('Build') {
+//             agent {
+//                 docker { 
+//                     image 'registry.intraphone.tech/test01/python-server:v6'
+//                     reuseNode true
+//                 }
+//             }
+//             steps {
+//                 sh 'echo "Jepp"' 
+//             }
+//         }
+//     }
+// }
+
 pipeline {
     agent any 
     stages { 
         stage('Build') {
-            agent {
-                docker { 
-                    image 'registry.intraphone.tech/test01/python-server:v6'
-                    reuseNode true
+            steps {
+                script {
+                    img = docker.build("registry.intraphone.tech/test01/python-server:v6")
+                    img.inside("--entrypoint= ") {
+                        sh "uname -a"
+                    }
                 }
             }
-            steps {
-                sh 'echo "Jepp"' 
-            }
+        
         }
     }
 }
-
 
 // pipeline {
 //     agent any 

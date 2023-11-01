@@ -16,13 +16,24 @@ pipeline {
                 echo "Running tests ..."
             }
         }
-        stage('Build a docker image') {
-            agent { dockerfile true }
-            steps {
-                sh '/usr/bin/python3 --version'
-                // echo "Builing a docker image"
+        // stage('Build a docker image') {
+        //     agent { dockerfile true }
+        //     steps {
+        //         sh '/usr/bin/python3 --version'
+        //         // echo "Builing a docker image"
+        //     }
+        // }
+        stage('Build') {
+            agent {
+                docker { 
+                    image 'registry.intraphone.tech/test01/python-server:v6'
+                    //reuseNode true
+                }
             }
-        }
+            steps {
+                sh 'echo "Jepp"' 
+            }
+        }        
     }
 }
 

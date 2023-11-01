@@ -2,7 +2,7 @@ pipeline {
     //agent { label 'agent01'}
     agent any
     environment {
-        registry = "registry.intraphone.tech/test01/python-server:v6"
+        registry = "registry.intraphone.tech/test01/python-server"
         //registryCredential = 'dockerhub'
     }
     stages {

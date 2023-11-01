@@ -43,7 +43,7 @@ pipeline {
             steps{
                 script {
                     //docker.withRegistry('https://registry.intraphone.tech') {
-                    docker.withRegistry('') {                        
+                    docker.withRegistry('','') {                        
                         dockerImage.push()
                     }
                 }

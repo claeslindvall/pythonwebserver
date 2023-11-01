@@ -4,7 +4,7 @@ RUN apt install iproute2 python3 -y
 RUN apt clean
 ADD index.html index.html
 ADD server.py server.py
-ADD run_webserver.sh
+ADD run_webserver.sh run_webserver.py
 EXPOSE 9000
 # ENTRYPOINT ["/usr/local/bin/python3", "/server.py"]
 RUN export PATH=$PATH:/usr/local/bin

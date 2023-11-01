@@ -7,8 +7,8 @@ pipeline {
     }
 
     stages {
-    //     stage('Cloning git repo') {
 
+    //     stage('Cloning git repo') {
     //         steps {
     //             git branch: 'main', url: 'https://github.com/claeslindvall/pythonwebserver.git'
     //         }
@@ -48,16 +48,16 @@ pipeline {
             }   
         }
 
-        // stage('Deploy image to registry') {
-        //     steps{
-        //         script {
-        //             //docker.withRegistry('https://registry.intraphone.tech') {
-        //             docker.withRegistry('','') {                        
-        //                 dockerImage.push()
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Deploy image to registry') {
+            steps{
+                script {
+                    docker.withRegistry('https://registry.intraphone.tech') {
+                    // docker.withRegistry("$registry:$BUILD_NUMBER") {                        
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
 
         stage('Cleaning up the images from Jenkins server') {
             steps {

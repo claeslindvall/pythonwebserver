@@ -31,10 +31,10 @@ pipeline {
                 // echo "Builing a docker image"
             }
         }
-        stage('Send image to registry') {
+        // stage('Send image to registry') {
 
             
-        }
+        // }
 
         // stage('Build') {
         //     agent {

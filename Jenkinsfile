@@ -1,8 +1,11 @@
 pipeline {
     //agent { label 'agent01'}
     agent any
+    environment {
+        registry = "registry.intraphone.tech/test01/python-server:v6"
+        //registryCredential = 'dockerhub'
+    }
     stages {
-
         stage('Compiling ...') {
             steps {
                 echo "Compiling some stuff here ... like mvn compile"
@@ -27,6 +30,10 @@ pipeline {
                 sh '/usr/bin/python3 --version'
                 // echo "Builing a docker image"
             }
+        }
+        stage('Send image to registry') {
+
+            
         }
 
         // stage('Build') {

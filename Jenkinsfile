@@ -31,10 +31,24 @@ pipeline {
                 // echo "Builing a docker image"
             }
         }
-        // stage('Send image to registry') {
+        stage('Name the Image') {
+            steps {
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
+            }   
+        }
 
-            
-        // }
+        stage('Deploy image to registry') {
+            steps{
+                script {
+                    docker.withRegistry() {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
 
         // stage('Build') {
         //     agent {

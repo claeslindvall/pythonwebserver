@@ -1,53 +1,59 @@
-// pipeline {
-//     agent { label 'agent01'}
-//     stages {
-//         stage('Compiling ...') {
-//             steps {
-//                 echo "Compiling some stuff here ... like mvn compile"
-//             }
-//         }
-//         stage('Check syntax') {
-//             steps {
-//                 echo "Check syntax | syntaxcheck"
-//             }
-//         }
-//         stage('Test software') {
-//             steps {
-//                 echo "Running tests ..."
-//             }
-//         }
-//         // stage('Build a docker image') {
-//         //     agent { dockerfile true }
-//         //     steps {
-//         //         sh '/usr/bin/python3 --version'
-//         //         // echo "Builing a docker image"
-//         //     }
-//         // }
-//         stage('Build') {
-//             agent {
-//                 docker { 
-//                     image 'registry.intraphone.tech/test01/python-server:v6'
-//                     //reuseNode true
-//                 }
-//             }
-//             steps {
-//                 sh 'echo "Jepp"' 
-//             }
-//         }        
-//     }
-// }
-
 pipeline {
-    agent { dockerfile true }
+    //agent { label 'agent01'}
+    agent any
     stages {
-        stage('Test') {
+
+        stage('Compiling ...') {
             steps {
-                sh '/usr/bin/python3 --version'
-                // sh '/usr/bin/python3 -m http.server 9000'
+                echo "Compiling some stuff here ... like mvn compile"
             }
         }
+
+        stage('Check syntax') {
+            steps {
+                echo "Check syntax | syntaxcheck"
+            }
+        }
+
+        stage('Test software') {
+            steps {
+                echo "Running tests ..."
+            }
+        }
+
+        stage('Build a docker image') {
+            agent { dockerfile true }
+            steps {
+                sh '/usr/bin/python3 --version'
+                // echo "Builing a docker image"
+            }
+        }
+
+        // stage('Build') {
+        //     agent {
+        //         docker { 
+        //             image 'registry.intraphone.tech/test01/python-server:v6'
+        //             //reuseNode true
+        //         }
+        //     }
+        //     steps {
+        //         sh 'echo "Jepp"' 
+        //     }
+        // }        
     }
 }
+
+// pipeline {
+//     agent { dockerfile true }
+//     stages {
+//         stage('Test') {
+//             steps {
+//                 sh '/usr/bin/python3 --version'
+//                 // sh '/usr/bin/python3 -m http.server 9000'
+//             }
+//         }
+//     }
+// }
 
 // pipeline {
 //     agent any 

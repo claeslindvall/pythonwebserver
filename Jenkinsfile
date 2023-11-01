@@ -58,11 +58,11 @@ pipeline {
         //     }
         // }
 
-        stage('Cleaning up the images from Jenkins server') {
-            steps {
-                sh "docker rmi $registry:$BUILD_NUMBER"
-            }
-        }
+        // stage('Cleaning up the images from Jenkins server') {
+        //     steps {
+        //         sh "docker rmi $registry:$BUILD_NUMBER"
+        //     }
+        // }
 
 
         // stage('Build') {

@@ -19,7 +19,8 @@ pipeline {
         stage('Build a docker image') {
             agent { dockerfile true }
             steps {
-                echo "Builing a docker image"
+                sh '/usr/bin/python3 --version'
+                // echo "Builing a docker image"
             }
         }
     }

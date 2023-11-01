@@ -14,70 +14,70 @@ pipeline {
     //         }
     //     }
 
-        stage('Compiling ...') {
-            steps {
-                echo "Compiling some stuff here ... like mvn compile"
+    stage('Compiling ...') {
+        steps {
+            echo "Compiling some stuff here ... like mvn compile"
+        }
+    }
+
+    stage('Check syntax') {
+        steps {
+            echo "Check syntax | syntaxcheck"
+        }
+    }
+
+    stage('Test software') {
+        steps {
+            echo "Running tests ..."
+        }
+    }
+
+    // stage('Build a docker image') {
+    //     agent { dockerfile true }
+    //     steps {
+    //         sh '/usr/bin/python3 --version'
+    //         // echo "Builing a docker image"
+    //     }
+    // }
+
+    stage('Name the Image') {
+        steps {
+            script {
+                docker.build registry + ":$BUILD_NUMBER"
             }
+        }   
+    }
+
+    // stage('Deploy image to registry') {
+    //     steps{
+    //         script {
+    //             //docker.withRegistry('https://registry.intraphone.tech') {
+    //             docker.withRegistry('','') {                        
+    //                 dockerImage.push()
+    //             }
+    //         }
+    //     }
+    // }
+
+    stage('Cleaning up the images from Jenkins server') {
+        steps {
+            sh "docker rmi $registry:$BUILD_NUMBER"
         }
-
-        stage('Check syntax') {
-            steps {
-                echo "Check syntax | syntaxcheck"
-            }
-        }
-
-        stage('Test software') {
-            steps {
-                echo "Running tests ..."
-            }
-        }
-
-        // stage('Build a docker image') {
-        //     agent { dockerfile true }
-        //     steps {
-        //         sh '/usr/bin/python3 --version'
-        //         // echo "Builing a docker image"
-        //     }
-        // }
-
-        stage('Name the Image') {
-            steps {
-                script {
-                    docker.build registry + ":$BUILD_NUMBER"
-                }
-            }   
-        }
-
-        // stage('Deploy image to registry') {
-        //     steps{
-        //         script {
-        //             //docker.withRegistry('https://registry.intraphone.tech') {
-        //             docker.withRegistry('','') {                        
-        //                 dockerImage.push()
-        //             }
-        //         }
-        //     }
-        // }
-
-        stage('Cleaning up the images from Jenkins server') {
-            steps {
-                sh "docker rmi $registry:$BUILD_NUMBER"
-            }
-        }
+    }
 
 
-        // stage('Build') {
-        //     agent {
-        //         docker { 
-        //             image 'registry.intraphone.tech/test01/python-server:v6'
-        //             //reuseNode true
-        //         }
-        //     }
-        //     steps {
-        //         sh 'echo "Jepp"' 
-        //     }
-        // }        
-        //}
+    // stage('Build') {
+    //     agent {
+    //         docker { 
+    //             image 'registry.intraphone.tech/test01/python-server:v6'
+    //             //reuseNode true
+    //         }
+    //     }
+    //     steps {
+    //         sh 'echo "Jepp"' 
+    //     }
+    // }        
+    //}
 }
 
 // pipeline {

@@ -13,7 +13,7 @@ RUN echo $PATH
 # CMD ["/usr/local/bin/python3 /server.py"]
 # CMD ["python3", "server.py"]
 # CMD ["sleep", "10"]
-# CMD sleep 60
+CMD sleep 60
 # ENTRYPOINT [ "sleep", "60" ]
-ENTRYPOINT [ "bash", "run_webserver.py" ]
+# ENTRYPOINT [ "bash", "run_webserver.py" ]
 

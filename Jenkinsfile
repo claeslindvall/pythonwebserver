@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy image to registry') {
             steps{
                 script {
-                    docker.withRegistry() {
+                    docker.withRegistry('https://registry.intraphone.tech','') {
                         dockerImage.push()
                     }
                 }

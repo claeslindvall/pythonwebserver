@@ -16,6 +16,12 @@ pipeline {
                 echo "Running tests ..."
             }
         }
+        stage('Build a docker image') {
+            agent { dockerfile true }
+            steps {
+                echo "Builing a docker image"
+            }
+        }
     }
 }
 

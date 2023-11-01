@@ -6,6 +6,13 @@ pipeline {
         //registryCredential = 'dockerhub'
     }
     stages {
+        stage('Cloning git repo') {
+
+            steps {
+                git 'https://github.com/claeslindvall/pythonwebserver.git'
+            }
+        }
+
         stage('Compiling ...') {
             steps {
                 echo "Compiling some stuff here ... like mvn compile"
@@ -24,13 +31,14 @@ pipeline {
             }
         }
 
-        stage('Build a docker image') {
-            agent { dockerfile true }
-            steps {
-                sh '/usr/bin/python3 --version'
-                // echo "Builing a docker image"
-            }
-        }
+        // stage('Build a docker image') {
+        //     agent { dockerfile true }
+        //     steps {
+        //         sh '/usr/bin/python3 --version'
+        //         // echo "Builing a docker image"
+        //     }
+        // }
+
         stage('Name the Image') {
             steps {
                 script {
@@ -39,14 +47,20 @@ pipeline {
             }   
         }
 
-        stage('Deploy image to registry') {
-            steps{
-                script {
-                    //docker.withRegistry('https://registry.intraphone.tech') {
-                    docker.withRegistry('','') {                        
-                        dockerImage.push()
-                    }
-                }
+        // stage('Deploy image to registry') {
+        //     steps{
+        //         script {
+        //             //docker.withRegistry('https://registry.intraphone.tech') {
+        //             docker.withRegistry('','') {                        
+        //                 dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
+
+        stage('Cleaning up the images from Jenkins server') {
+            steps {
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
 

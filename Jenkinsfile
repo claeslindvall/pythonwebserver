@@ -5,13 +5,14 @@ pipeline {
         registry = "registry.intraphone.tech/test01/python-server"
         //registryCredential = 'dockerhub'
     }
-    stages {
-        stage('Cloning git repo') {
 
-            steps {
-                git branch: 'main', url: 'https://github.com/claeslindvall/pythonwebserver.git'
-            }
-        }
+    // stages {
+    //     stage('Cloning git repo') {
+
+    //         steps {
+    //             git branch: 'main', url: 'https://github.com/claeslindvall/pythonwebserver.git'
+    //         }
+    //     }
 
         stage('Compiling ...') {
             steps {

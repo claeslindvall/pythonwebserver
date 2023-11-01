@@ -1,3 +1,24 @@
+pipeline {
+    agent { label 'agent01'}
+    stages {
+        stage('Compiling ...') {
+            steps {
+                echo "Compiling some stuff here ... like mvn compile"
+            }
+        }
+        stage('Check syntax') {
+            steps {
+                echo "Check syntax | syntaxcheck"
+            }
+        }
+        stage('Test software') {
+            steps {
+                echo "Running tests ..."
+            }
+        }
+    }
+}
+
 // pipeline {
 //     agent { dockerfile true }
 //     stages {
@@ -27,22 +48,22 @@
 //     }
 // }
 
-pipeline {
-    agent any //{ label 'agent01' } 
-    stages { 
-        stage('Build') {
-            steps {
-                script {
-                    img = docker.build("registry.intraphone.tech/test01/python-server:v6")
-                    //img.inside("--entrypoint=/usr/bin/python3 /server.py") {
-                    //     sh "uname -a"
-                    // }
-                }
-            }
+// pipeline {
+//     agent any //{ label 'agent01' } 
+//     stages { 
+//         stage('Build') {
+//             steps {
+//                 script {
+//                     img = docker.build("registry.intraphone.tech/test01/python-server:v6")
+//                     //img.inside("--entrypoint=/usr/bin/python3 /server.py") {
+//                     //     sh "uname -a"
+//                     // }
+//                 }
+//             }
         
-        }
-    }
-}
+//         }
+//     }
+// }
 
 // pipeline {
 //     agent any 

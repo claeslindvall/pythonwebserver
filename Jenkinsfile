@@ -9,7 +9,7 @@ pipeline {
         stage('Cloning git repo') {
 
             steps {
-                git branch: 'main' url: 'https://github.com/claeslindvall/pythonwebserver.git'
+                git branch: 'main', url: 'https://github.com/claeslindvall/pythonwebserver.git'
             }
         }
 

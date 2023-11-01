@@ -32,21 +32,21 @@ pipeline {
             }
         }
 
-        // stage('Build a docker image') {
-        //     agent { dockerfile true }
-        //     steps {
-        //         sh '/usr/bin/python3 --version'
-        //         // echo "Builing a docker image"
-        //     }
-        // }
+        stage('Build a docker image') {
+            agent { dockerfile true }
+            steps {
+                sh '/usr/bin/python3 --version'
+                // echo "Builing a docker image"
+            }
+        }
 
-        // stage('Name the Image') {
-        //     steps {
-        //         script {
-        //             docker.build registry + ":$BUILD_NUMBER"
-        //         }
-        //     }   
-        // }
+        stage('Name the Image') {
+            steps {
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
+            }   
+        }
 
         // stage('Deploy image to registry') {
         //     steps{
@@ -59,11 +59,11 @@ pipeline {
         //     }
         // }
 
-        // stage('Cleaning up the images from Jenkins server') {
-        //     steps {
-        //         sh "docker rmi $registry:$BUILD_NUMBER"
-        //     }
-        // }
+        stage('Cleaning up the images from Jenkins server') {
+            steps {
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
 
 
         // stage('Build') {

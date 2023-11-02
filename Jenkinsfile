@@ -56,7 +56,7 @@ pipeline {
     stage('Deploy to Kubernetes') {
         steps {
             script {
-                withKubernetes([k8scred]:'clalin', serverUrl: 'https://192.168.12.224:16443') {
+                withKubernetes([k8scred:'clalin', serverUrl: 'https://192.168.12.224:16443']) {
                     sh 'kubectl apply -f nginx_deployment.yaml'
                 }
             }

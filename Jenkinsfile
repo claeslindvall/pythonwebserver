@@ -49,15 +49,26 @@ pipeline {
             sh "docker rmi $registry:$BUILD_NUMBER"
           }
         }
-
       }
     }
 
-    stage('Deploy to Cluster') {
-      steps {
-        sh " envsubst < $WORKSPACE/nginx_deployment.yaml | /snap/bin/kubectl -f -"
-      }
+    // withKubeConfig([credentialsId: 'user1', serverUrl: 'https://api.k8s.my-company.com']) {
+    stage('Deploy to Kubernetes') {
+        steps {
+            script {
+                withKubernetes([k8scred]:'clalin', serverUrl: 'https://192.168.12.224:16443') {
+                    sh 'kubectl apply -f nginx_deployment.yaml'
+                }
+            }
+        }
+
     }
+
+    // stage('Deploy to Cluster') {
+    //   steps {
+    //     sh " envsubst < $WORKSPACE/nginx_deployment.yaml | /snap/bin/kubectl -f -"
+    //   }
+    // }
 
   }
   environment {

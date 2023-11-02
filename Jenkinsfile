@@ -48,15 +48,20 @@ pipeline {
             }   
         }
 
+        stage('Deploy image to registry') {
+            steps{
+                script {
+                    docker.withRegistry('https://registry.intraphone.tech') {
+                    // docker.withRegistry("$registry:$BUILD_NUMBER") {                        
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
         // stage('Deploy image to registry') {
-        //     steps{
-        //         script {
-        //             docker.withRegistry('https://registry.intraphone.tech') {
-        //             // docker.withRegistry("$registry:$BUILD_NUMBER") {                        
-        //                 dockerImage.push()
-        //             }
-        //         }
-        //     }
+
+            
         // }
 
         stage('Cleaning up the images from Jenkins server') {

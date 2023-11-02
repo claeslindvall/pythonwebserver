@@ -43,8 +43,10 @@ pipeline {
         stage('Name the Image') {
             steps {
                 script {
-                    def newImage = docker.build registry + ":$BUILD_NUMBER"
-                    newImage.push()
+                    docker.withRegistry('https://registry.intraphone.tech', 'jenkins') {
+                        def newImage = docker.build registry + ":$BUILD_NUMBER"
+                        newImage.push()
+                    }
                 }
             }   
         }

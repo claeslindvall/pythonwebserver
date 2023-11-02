@@ -59,7 +59,7 @@ pipeline {
 
         stage('Deploy to Cluster') {
             steps {
-                sh " envsubst < $WORKSPACE/nginx_deployment.yaml | kubectl -f -"
+                sh " envsubst < $WORKSPACE/nginx_deployment.yaml | /snap/bin/kubectl -f -"
             }
 
         }

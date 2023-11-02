@@ -36,11 +36,10 @@ pipeline {
             agent { dockerfile true }
             steps {
                 sh '/usr/bin/python3 --version'
-                // echo "Builing a docker image"
             }
         }
 
-        stage('Name the Image') {
+        stage('Name and push the Image to registry') {
             steps {
                 script {
                     docker.withRegistry('https://registry.intraphone.tech', 'Jenkins') {
@@ -51,21 +50,6 @@ pipeline {
             }   
         }
 
-        // stage('Deploy image to registry') {
-        //     steps{
-        //         script {
-        //             docker.withRegistry('https://registry.intraphone.tech') {
-        //             // docker.withRegistry("$registry:$BUILD_NUMBER") {                        
-        //                 dockerImage.push()
-        //             }
-        //         }
-        //     }
-        // }
-
-        // stage('Deploy image to registry') {
-
-            
-        // }
 
         stage('Cleaning up the images from Jenkins server') {
             steps {
@@ -73,50 +57,24 @@ pipeline {
             }
         }
 
+        stage('Deploy to Cluster') {
+            steps {
+                sh " envsubst < $WORKSPACE/nginx_deployment.yaml | kubectl -f -"
+            }
 
-        // stage('Build') {
-        //     agent {
-        //         docker { 
-        //             image 'registry.intraphone.tech/test01/python-server:v6'
-        //             //reuseNode true
+        }
+
+        // Fung ej pga att plugin är depricated
+        // stage('Deploying nginx to Kubernetes') {
+        //     steps {
+        //         script {
+        //             kubernetesDeploy(configs: "nginx_deployment.yaml")
         //         }
         //     }
-        //     steps {
-        //         sh 'echo "Jepp"' 
-        //     }
         // }        
+
     }
 }
-
-// pipeline {
-//     agent { dockerfile true }
-//     stages {
-//         stage('Test') {
-//             steps {
-//                 sh '/usr/bin/python3 --version'
-//                 // sh '/usr/bin/python3 -m http.server 9000'
-//             }
-//         }
-//     }
-// }
-
-// pipeline {
-//     agent any 
-//     stages { 
-//         stage('Build') {
-//             agent {
-//                 docker { 
-//                     image 'registry.intraphone.tech/test01/python-server:v6'
-//                     //reuseNode true
-//                 }
-//             }
-//             steps {
-//                 sh 'echo "Jepp"' 
-//             }
-//         }
-//     }
-// }
-
 // pipeline {
 //     agent any //{ label 'agent01' } 
 //     stages { 

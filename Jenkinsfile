@@ -43,21 +43,22 @@ pipeline {
         stage('Name the Image') {
             steps {
                 script {
-                    docker.build registry + ":$BUILD_NUMBER"
+                    def newImage = docker.build registry + ":$BUILD_NUMBER"
+                    newImage.push()
                 }
             }   
         }
 
-        stage('Deploy image to registry') {
-            steps{
-                script {
-                    docker.withRegistry('https://registry.intraphone.tech') {
-                    // docker.withRegistry("$registry:$BUILD_NUMBER") {                        
-                        dockerImage.push()
-                    }
-                }
-            }
-        }
+        // stage('Deploy image to registry') {
+        //     steps{
+        //         script {
+        //             docker.withRegistry('https://registry.intraphone.tech') {
+        //             // docker.withRegistry("$registry:$BUILD_NUMBER") {                        
+        //                 dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage('Deploy image to registry') {
 

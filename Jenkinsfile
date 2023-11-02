@@ -56,7 +56,7 @@ pipeline {
     stage('Deploy to Kubernetes') {
         steps {
             script {
-                withKubeConfig([credentialsId:k8scred, serverUrl: 'https://192.168.12.224:16443']) {
+                withKubeConfig([credentialsId: 'k8scred', serverUrl: 'https://192.168.12.224:16443']) {
                     sh 'kubectl apply -f nginx_deployment.yaml'
                 }
             }

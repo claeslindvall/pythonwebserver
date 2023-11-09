@@ -52,7 +52,6 @@ pipeline {
       }
     }
 
-    // withKubeConfig([credentialsId: 'user1', serverUrl: 'https://api.k8s.my-company.com']) {
     stage('Deploy to Kubernetes') {
         steps {
             script {
@@ -64,6 +63,7 @@ pipeline {
 
     }
 
+    // Deploy if kubernetes agent resides on kubernetes cluster
     // stage('Deploy to Cluster') {
     //   steps {
     //     sh " envsubst < $WORKSPACE/nginx_deployment.yaml | /snap/bin/kubectl -f -"
